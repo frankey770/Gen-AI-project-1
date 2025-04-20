@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Recipe Generation by Ingredients</h1>
+    <p>Enter the ingredients you have available, separated by commas, and we'll generate a delicious recipe for you!</p>
+</div>
+
+<form action="/generate-recipe" method="POST">
+    <label for="ingredients">Your Ingredients:</label>
+    <textarea id="ingredients" name="ingredients" rows="5" placeholder="e.g., chicken breast, spinach, garlic, olive oil, lemon" required></textarea>
+    <button type="submit">Generate Recipe</button>
+</form>
+
+<div class="hero">
+    <h2>Tips for Better Results</h2>
+    <p>For best results, include proteins, vegetables, and flavor enhancers like herbs and spices. The more specific you are with your ingredients, the better your recipe will be!</p>
+</div>
+{% endblock %}

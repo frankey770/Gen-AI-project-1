@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Download & Share Recipe</h1>
+    <p>Save or share "{{ recipe.name }}" with others</p>
+</div>
+
+<div class="recipe-card">
+    <h2>{{ recipe.name }}</h2>
+    
+    <div class="share-buttons">
+        <a href="/download-pdf/{{ recipe_id }}" class="share-button download-btn" target="_blank">Download as PDF</a>
+    </div>
+    <div class="recipe-section" style="margin-top: 20px;">
+        <h3>Share Link</h3>
+        <input type="text" id="share-link" value="{{ request.url_for('share_page', recipe_id=recipe_id) }}" readonly>
+        <button onclick="copyShareLink()">Copy Link</button>
+    </div>
+    
+    <script>
+        function copyShareLink() {
+            var copyText = document.getElementById("share-link");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Link copied to clipboard!");
+        }
+    </script>
+</div>
+
+<div class="recipe-card">
+    <h3>Recipe Summary</h3>
+    
+    <div class="recipe-meta">
+        <p>Time: {{ recipe.time }}</p>
+        <p>Servings: {{ recipe.servings }}</p>
+        {% if recipe.cuisine %}
+        <p>Cuisine: {{ recipe.cuisine }}</p>
+        {% endif %}
+        {% if recipe.meal_type %}
+        <p>Meal Type: {{ recipe.meal_type }}</p>
+        {% endif %}
+        {% if recipe.dietary_type %}
+        <p>Dietary Type: {{ recipe.dietary_type }}</p>
+        {% endif %}
+    </div>
+    
+    <div class="recipe-section">
+        <h4>Ingredients</h4>
+        <ul>
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="recipe-section">
+        <h4>Instructions</h4>
+        <ol>
+            {% for step in recipe.steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+    {% if recipe.nutrition %}
+    <div class="recipe-section">
+        <h4>Nutritional Information (per serving)</h4>
+        <div class="nutrition-info">
+            <div class="nutrition-item">
+                <p>Calories</p>
+                <p class="nutrition-value">{{ recipe.nutrition.calories }}</p>
+            </div>
+            <div class="nutrition-item">
+                <p>Protein</p>
+                <p class="nutrition-value">{{ recipe.nutrition.protein }}</p>
+            </div>
+            <div class="nutrition-item">
+                <p>Carbs</p>
+                <p class="nutrition-value">{{ recipe.nutrition.carbs }}</p>
+            </div>
+            <div class="nutrition-item">
+                <p>Fat</p>
+                <p class="nutrition-value">{{ recipe.nutrition.fat }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Contact Us</h1>
+    <p>Have questions, feedback, or suggestions? We'd love to hear from you!</p>
+</div>
+
+<div class="recipe-card">
+    <div class="recipe-section">
+        <h3>Get in Touch</h3>
+        <p>Our team is always ready to assist you with any questions or concerns you might have about FoodieAI.</p>
+    </div>
+    
+    <form id="contact-form">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+        </div>
+        
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit">Send Message</button>
+    </form>
+    
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</div>
+
+<div class="recipe-card">
+    <h2>Connect With Us</h2>
+    
+    <div class="recipe-section">
+        <h3>Email</h3>
+        <p>support@foodieai.example.com</p>
+    </div>
+    
+    <div class="recipe-section">
+        <h3>Social Media</h3>
+        <p>Follow us on social media for cooking tips, recipe ideas, and updates:</p>
+        <ul>
+            <li>Twitter: @FoodieAI</li>
+            <li>Instagram: @FoodieAI_recipes</li>
+            <li>Facebook: FoodieAI</li>
+        </ul>
+    </div>
+    
+    <div class="recipe-section">
+        <h3>Office Hours</h3>
+        <p>Our support team is available Monday through Friday, 9:00 AM to 5:00 PM EST.</p>
+    </div>
+</div>
+{% endblock %}

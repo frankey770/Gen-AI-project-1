@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Recipe Type Search</h1>
+    <p>Find recipes by cuisine, meal type, and dietary preferences.</p>
+</div>
+
+<form action="/search-recipes" method="POST">
+    <div>
+        <label for="cuisine">Cuisine:</label>
+        <select id="cuisine" name="cuisine" required>
+            <option value="">Select a cuisine</option>
+            <option value="Italian">Italian</option>
+            <option value="Indian">Indian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Thai">Thai</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="French">French</option>
+            <option value="American">American</option>
+        </select>
+    </div>
+    
+    <div>
+        <label for="meal_type">Meal Type:</label>
+        <select id="meal_type" name="meal_type" required>
+            <option value="">Select a meal type</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Appetizer">Appetizer</option>
+            <option value="Snack">Snack</option>
+            <option value="Dessert">Dessert</option>
+        </select>
+    </div>
+    
+    <div>
+        <label for="dietary_type">Dietary Type:</label>
+        <select id="dietary_type" name="dietary_type" required>
+            <option value="">Select a dietary type</option>
+            <option value="Regular">Regular</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Gluten-Free">Gluten-Free</option>
+            <option value="Keto">Keto</option>
+            <option value="Low-Carb">Low-Carb</option>
+            <option value="Paleo">Paleo</option>
+        </select>
+    </div>
+    
+    <button type="submit">Search Recipes</button>
+</form>
+{% endblock %}

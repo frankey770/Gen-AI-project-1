@@ -1,0 +1,50 @@
+{% extends "base.html" %}  
+{% block content %} 
+<div class="hero">
+    <h1>Nutritional Information</h1>
+    <p>{% if food_item %}Estimated nutritional values for "{{ food_item }}"{% else %}Search for food nutritional information{% endif %}</p>
+</div>
+
+<div class="recipe-card">
+    <form id="food-search-form" action="/nutrition" method="GET" class="food-search-form">
+        <h3>Search Food Item</h3>
+        <div class="search-container">
+            <input 
+                type="text" 
+                name="food_item" 
+                id="food-item-input" 
+                placeholder="Enter a food item (e.g., apple, chicken breast)" 
+                value="{{ food_item | default('') }}" 
+                required 
+                aria-label="Enter a food item to search for nutritional information"
+            >
+            <button type="submit" class="search-button">Get Nutrition Info</button>
+        </div>
+    </form>
+</div>
+
+{% if nutrition %}
+<div class="recipe-card">
+    <h2>Nutritional Information for "{{ food_item }}"</h2>
+    
+    <div class="nutrition-info">
+        <div class="nutrition-item">
+            <p>Calories</p>
+            <p class="nutrition-value">{{ nutrition.calories }}</p>
+        </div>
+        <div class="nutrition-item">
+            <p>Protein</p>
+            <p class="nutrition-value">{{ nutrition.protein }}</p>
+        </div>
+        <div class="nutrition-item">
+            <p>Carbs</p>
+            <p class="nutrition-value">{{ nutrition.carbs }}</p>
+        </div>
+        <div class="nutrition-item">
+            <p>Fat</p>
+            <p class="nutrition-value">{{ nutrition.fat }}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

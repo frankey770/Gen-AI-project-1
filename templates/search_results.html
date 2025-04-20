@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Recipe Search Results</h1>
+    <p>{{ cuisine }} {{ meal_type }} recipes that are {{ dietary_type }}</p>
+</div>
+
+{% for recipe, recipe_id in recipes %}
+<div class="recipe-card">
+    <h2>{{ recipe.name }}</h2>
+    
+    <div class="recipe-meta">
+        <p>Cuisine: {{ recipe.cuisine }}</p>
+        <p>Meal Type: {{ recipe.meal_type }}</p>
+        <p>Dietary Type: {{ recipe.dietary_type }}</p>
+        <p>Time: {{ recipe.time }}</p>
+        <p>Servings: {{ recipe.servings }}</p>
+    </div>
+    
+    <div class="recipe-section">
+        <h3>Ingredients</h3>
+        <ul>
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="recipe-section">
+        <h3>Instructions</h3>
+        <ol>
+            {% for step in recipe.steps %}
+            <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+    <div class="share-buttons">
+        <a href="/share/{{ recipe_id }}" class="share-button share-link-btn">Download & Share</a>
+    </div>
+</div>
+{% endfor %}
+
+<div class="hero">
+    <h3>Not finding what you're looking for?</h3>
+    <p>Try adjusting your search criteria or generate a recipe by ingredients.</p>
+    <div class="share-buttons">
+        <a href="/recipe-search" class="share-button download-btn">New Search</a>
+        <a href="/ingredients" class="share-button share-link-btn">Recipe by Ingredients</a>
+    </div>
+</div>
+{% endblock %}

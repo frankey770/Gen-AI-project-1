@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="recipe-card">
+    <h2>{{ recipe.name }}</h2>
+
+    <p><strong>Time:</strong> {{ recipe.time }}</p>
+    <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+
+    {% if recipe.cuisine %}
+        <p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+    {% endif %}
+    {% if recipe.meal_type %}
+        <p><strong>Meal Type:</strong> {{ recipe.meal_type }}</p>
+    {% endif %}
+    {% if recipe.dietary_type %}
+        <p><strong>Dietary:</strong> {{ recipe.dietary_type }}</p>
+    {% endif %}
+
+    <h3>Ingredients</h3>
+    <ul>
+        {% for item in recipe.ingredients %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Steps</h3>
+    <ol>
+        {% for step in recipe.steps %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+
+    <div class="actions" style="margin-top: 20px;">
+        <!-- Regenerate Recipe Button -->
+        <form method="post" action="/generate-recipe" style="display:inline;">
+            <input type="hidden" name="ingredients" value="{{ ','.join(recipe.ingredients) }}">
+            <button type="submit" class="regenerate-btn">🔄 Regenerate Recipe</button>
+        </form>
+
+        <!-- Download as PDF -->
+        <a href="/download-pdf/{{ recipe_id }}" class="btn">📄 Download PDF</a>
+
+        <!-- Share -->
+        <a href="/share/{{ recipe_id }}" class="btn">🔗 Share</a>
+
+    </div>
+</div>
+
+<style>
+    .regenerate-btn {
+        background-color: #f0ad4e;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .btn:hover, .regenerate-btn:hover {
+        opacity: 0.9;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to FoodieAI: Recipe Generator</h1>
+    <p>Turn your available ingredients into delicious recipes with the power of AI. Get personalized recipes, nutritional information, and more in seconds.</p>
+</div>
+
+<div class="feature-container">
+    <a href="/ingredients" class="feature-box">
+        <h3>Generate Recipes</h3>
+        <p>Input ingredients and get recipes.</p>
+    </a>
+    <a href="/recipe-search" class="feature-box">
+        <h3>Search Recipes</h3>
+        <p>Find recipes by cuisine, meal type, or dietary preferences.</p>
+    </a>
+    <a href="/nutrition?food_item=apple" class="feature-box">
+        <h3>Nutritional Information</h3>
+        <p>Click to search for nutritional information of a food item.</p>
+    </a>
+</div>
+
+<div class="hero">
+    <h2>How It Works</h2>
+    <p>FoodieAI uses advanced AI technology to analyze ingredients and preferences, creating personalized recipes that are both delicious and tailored to your needs. Simply input what you have or what you're looking for, and let our AI do the rest!</p>
+</div>
+{% endblock %}
